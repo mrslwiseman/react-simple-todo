@@ -1,9 +1,10 @@
 import {connect} from 'react-redux';
 import TodoList from '../Components/TodoList';
 import {toggleTodo} from '../Actions'
+
+// determines which todos should be passed down to TodoList.
 const getVisibleTodos = (todos, filter) => {
     // 3. filter to dos
-    
     switch(filter){
         case 'SHOW_ALL':
             return todos
@@ -16,6 +17,7 @@ const getVisibleTodos = (todos, filter) => {
     }
 }
 
+// pass down todos via props to the TodoList component
 const mapStateToProps = (state) => {
     // 2. all TodoList needs is the relevant todos dep. on visibility, lets filter in getVisibleTodos()
     // this keeps this logic out of TodoList component (which is a dumb component now haha)
@@ -24,7 +26,10 @@ const mapStateToProps = (state) => {
     }
 }
 
+// pass onTodoClick down via props. 
+// functino passed will be wrapped in dispatch() so it'll create an action.
 const mapDispatchToProps = {
+    // onTodoClick: dispatch(toggleTodo)
     onTodoClick: toggleTodo
 }
 
